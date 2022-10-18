@@ -40,30 +40,59 @@ public class MyArrayList<E> implements ListADT<E>{
 		{
 			throw new IndexOutOfBoundsException();
 		}
+		if (array.length == size) {
+			int newCapacity = (int) array.length * 2;
+			E [] array2= (E[]) new Object[newCapacity];
+			for (int i = 0; i < array.length; i++) {
+				array2[i] = array[i];
+			}
+			array = array2;
+		}
+		
+		for (int i = size; i > index; i--) {
+			array[i] = array[i -1];
+		}
+		
+		array[index] = toAdd;
+		size++;
 		//if array.length == size (array has run out of room)
 			//create a new array of larger length
 			//copy from original array into the new array
 			//set array to the new larger array
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean add(E toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
+		if (toAdd == null)
+		{
+			throw new NullPointerException();
+		}
+		
+		array[size] = toAdd;
+		size++;
+		
+		return true;
 	}
 
 	@Override
 	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
+		if (toAdd == null)
+		{
+			throw new NullPointerException();
+		}		
+		
+		for (int i = 0; i < toAdd.size(); i++) {
+			array[size + i] = toAdd.get(i); 
+		}
+		
+		size += toAdd.size();
+		return true;
 	}
 
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		return (E) array[index];
 	}
 
 	@Override
