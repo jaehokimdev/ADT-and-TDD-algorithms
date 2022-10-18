@@ -40,7 +40,9 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testSize() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		assertEquals(2, list1.size());
 	}
 
 	/**
@@ -144,7 +146,12 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testAddE() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		boolean actual = list1.add("C");
+		assertTrue(actual);
+		assertEquals(3, list1.size());
+		assertEquals("C", list1.get(2)); 
 	}
 
 	/**
@@ -152,7 +159,18 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testAddAll() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+		
+		ListADT <String> list2 = new MyArrayList<>();
+		
+		list2.add("D");
+		list2.add("E");
+		list2.add("F");
+
+		list1.addAll(list2);
+		assertEquals(6, list1.size());
 	}
 
 	/**
@@ -160,7 +178,11 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testGet() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+
+		assertEquals("C", list1.get(2)); 
 	}
 
 	/**
@@ -168,7 +190,13 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testRemoveInt() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+		list1.remove(1);
+
+		assertEquals(2, list1.size()); 
+		assertEquals("C", list1.get(1)); 
 	}
 
 	/**
@@ -176,7 +204,13 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testRemoveE() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+		list1.remove("B");
+
+		assertEquals(2, list1.size()); 
+		assertEquals("C", list1.get(1)); 
 	}
 
 	/**
@@ -184,7 +218,13 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testSet() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+		list1.set(1, "D");
+
+		assertEquals(3, list1.size()); 
+		assertEquals("D", list1.get(1)); 
 	}
 
 	/**
@@ -192,7 +232,13 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testIsEmpty() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+		
+		list1.clear();
+
+		assertTrue(list1.isEmpty());
 	}
 
 	/**
@@ -200,7 +246,12 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testContains() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+
+		assertEquals(3, list1.size()); 
+		assertTrue(list1.contains("C"));
 	}
 
 	/**
@@ -208,7 +259,16 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testToArrayEArray() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+		
+		String[] toHold = new String[3];
+		list1.toArray(toHold);
+		
+		assertEquals("A", toHold[0]);
+		assertEquals("B", toHold[1]); 
+		assertEquals("C", toHold[2]); 
 	}
 
 	/**
@@ -216,7 +276,15 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testToArray() {
-		fail("Not yet implemented");
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+		
+		Object [] toHold = list1.toArray();
+		
+		assertEquals("A", toHold[0]);
+		assertEquals("B", toHold[1]); 
+		assertEquals("C", toHold[2]); 
 	}
 
 	/**
