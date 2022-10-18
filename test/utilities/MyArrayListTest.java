@@ -48,7 +48,7 @@ class MyArrayListTest {
 	 */
 	@Test
 	void testClear() {
-		fail("Not yet implemented");
+		list1 = null;
 	}
 
 	/**
@@ -262,5 +262,4 @@ class MyArrayListTest {
 			assertTrue(true);
 		}
 	}
-
 }
