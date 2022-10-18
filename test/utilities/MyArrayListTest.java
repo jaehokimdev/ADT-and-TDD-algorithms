@@ -5,6 +5,8 @@ package utilities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.NoSuchElementException;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,12 +16,15 @@ import org.junit.jupiter.api.Test;
  *
  */
 class MyArrayListTest {
+	
+	ListADT <String> list1;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
+		list1 = new MyArrayList<>();
 	}
 
 	/**
@@ -27,6 +32,7 @@ class MyArrayListTest {
 	 */
 	@AfterEach
 	void tearDown() throws Exception {
+		list1 = null;
 	}
 
 	/**
@@ -49,8 +55,88 @@ class MyArrayListTest {
 	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
-	void testAddIntE() {
-		fail("Not yet implemented");
+	void testAddIntEEmptyList() {
+		boolean actual = list1.add(0, "A");
+		assertTrue(actual);
+		assertEquals(1, list1.size());
+		assertEquals("A", list1.get(0));
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
+	 */
+	@Test
+	void testAddIntENonEmptyListStart() {
+		list1.add("B");
+		boolean actual = list1.add(0, "A");
+		assertTrue(actual);
+		assertEquals(2, list1.size());
+		assertEquals("A", list1.get(0));
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
+	 */
+	@Test
+	void testAddIntENonEmptyListMiddle() {
+		list1.add("A");
+		list1.add("C");
+		boolean actual = list1.add(1, "B");
+		assertTrue(actual);
+		assertEquals(3, list1.size());
+		assertEquals("B", list1.get(1));
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
+	 */
+	@Test
+	void testAddIntENonEmptyListEnd() {
+		list1.add("A");
+		list1.add("B");
+		boolean actual = list1.add(2, "C");
+		assertTrue(actual);
+		assertEquals(3, list1.size());
+		assertEquals("C", list1.get(2)); 
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
+	 */
+	@Test
+	void testAddIntENullPointer() {
+		try {
+			list1.add(0, null);
+			fail("NullPointerException didn't throw");
+		} catch(NullPointerException e) {
+			assertTrue(true);
+		}
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
+	 */
+	@Test
+	void testAddIntEIndexOutOfBoundsNegative() {
+		try {
+			list1.add(-1, null);
+			fail("IndexOutOfBoundsException didn't throw");
+		} catch(IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
+	 */
+	@Test
+	void testAddIntEIndexOutOfBoundsGreaterThanSize() {
+		try {
+			list1.add(1, "A");
+			fail("IndexOutOfBoundsException didn't throw");
+		} catch(IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
 	}
 
 	/**
@@ -137,8 +223,44 @@ class MyArrayListTest {
 	 * Test method for {@link utilities.MyArrayList#iterator()}.
 	 */
 	@Test
-	void testIterator() {
-		fail("Not yet implemented");
+	void testIteratorEmpty() {
+		Iterator <String>it = list1.iterator();
+		assertFalse(it.hasNext());
+		try
+		{
+			it.next();
+			fail("Exception didn't throw");
+		}catch (NoSuchElementException e)
+		{
+			assertTrue(true);
+		}
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#iterator()}.
+	 */
+	@Test
+	void testIteratorNotEmpty() {
+		list1.add("A");
+		list1.add("B");
+		list1.add("C");
+		Iterator <String>it = list1.iterator();
+		assertTrue(it.hasNext());
+		int i = 0;
+		while(it.hasNext())
+		{
+			assertEquals(list1.get(i), it.next());
+			i++;
+		}
+		assertFalse(it.hasNext());
+		try
+		{
+			it.next();
+			fail("Exception didn't throw");
+		}catch (NoSuchElementException e)
+		{
+			assertTrue(true);
+		}
 	}
 
 }

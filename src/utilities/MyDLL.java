@@ -1,24 +1,12 @@
 package utilities;
 
-import java.util.NoSuchElementException;
+public class MyDLL<E> implements ListADT<E> {
 
-public class MyArrayList<E> implements ListADT<E>{ 
-
-	private static final long serialVersionUID = -6641976547739553233L;
-	
-	//Attributes
-	private E [] array;
+	private static final long serialVersionUID = -7140796753013938413L;
+	private DLLNode<E> head;
+	private DLLNode<E> tail;
 	private int size;
-	
-	//Constructors
-	public MyArrayList() {
-		this(10);
-	}
-	
-	public MyArrayList(int capacity) {
-		array = (E[]) new Object[capacity];
-	}
-	
+
 	@Override
 	public int size() {
 		return size;
@@ -32,20 +20,8 @@ public class MyArrayList<E> implements ListADT<E>{
 
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
-		if (toAdd == null)
-		{
-			throw new NullPointerException();
-		}
-		if (index < 0 || index > size)
-		{
-			throw new IndexOutOfBoundsException();
-		}
-		//if array.length == size (array has run out of room)
-			//create a new array of larger length
-			//copy from original array into the new array
-			//set array to the new larger array
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
@@ -110,30 +86,8 @@ public class MyArrayList<E> implements ListADT<E>{
 
 	@Override
 	public Iterator<E> iterator() {
-
-		return new ArrayBasedIterator();
-	}
-	
-	private class ArrayBasedIterator implements Iterator<E>
-	{
-		private int pos;
-		
-		@Override
-		public boolean hasNext() {
-			return pos < size;
-		}
-
-		@Override
-		public E next() throws NoSuchElementException {
-			if (pos >= size)
-			{
-				throw new NoSuchElementException();
-			}
-			E toReturn = array[pos];
-			pos++;
-			return toReturn;
-		}
-		
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
