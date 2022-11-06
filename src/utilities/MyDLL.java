@@ -3,9 +3,17 @@ package utilities;
 public class MyDLL<E> implements ListADT<E> {
 
 	private static final long serialVersionUID = -7140796753013938413L;
-	private DLLNode<E> head;
-	private DLLNode<E> tail;
+	private MyDLLNode<E> head;
+	private MyDLLNode<E> tail;
 	private int size;
+	
+	public MyDLL() {
+		head = null;
+		tail = null;
+		size = 0;
+	}
+	
+	
 
 	@Override
 	public int size() {
@@ -14,8 +22,9 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		head = null;
+		tail = null;
+		size = 0;
 	}
 
 	@Override

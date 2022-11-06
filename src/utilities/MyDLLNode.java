@@ -1,18 +1,18 @@
 package utilities;
 
-public class DLLNode<E> {
+public class MyDLLNode<E> {
 	private E element;
-	private DLLNode<E> next;
-	private DLLNode<E> prev;
+	private MyDLLNode<E> next;
+	private MyDLLNode<E> prev;
 	
 	
-	public DLLNode(E element) {
+	public MyDLLNode(E element) {
 		super();
 		this.element = element;
 	}
 
 
-	public DLLNode(E element, DLLNode<E> next, DLLNode<E> prev) {
+	public MyDLLNode(E element, MyDLLNode<E> next, MyDLLNode<E> prev) {
 		super();
 		this.element = element;
 		this.next = next;
@@ -30,22 +30,22 @@ public class DLLNode<E> {
 	}
 
 
-	public DLLNode<E> getNext() {
+	public MyDLLNode<E> getNext() {
 		return next;
 	}
 
 
-	public void setNext(DLLNode<E> next) {
+	public void setNext(MyDLLNode<E> next) {
 		this.next = next;
 	}
 
 
-	public DLLNode<E> getPrev() {
+	public MyDLLNode<E> getPrev() {
 		return prev;
 	}
 
 
-	public void setPrev(DLLNode<E> prev) {
+	public void setPrev(MyDLLNode<E> prev) {
 		this.prev = prev;
 	}
 	

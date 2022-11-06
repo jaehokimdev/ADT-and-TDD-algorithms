@@ -1,102 +1,114 @@
-/**
- * 
- */
 package utilities;
 
-import java.util.NoSuchElementException;
+import exceptions.EmptyQueueException;
+import java.io.*;
 
 /**
- * @author valentinmorales
- *
- */
-
-/**
- * <p>
- * The <code>queueADT</code> interface is designed to be used as a basis for assignment 2 part 1 for  CPRG 311 class at 
- * SAIT. The implementors of this interface will be required to add all the 
- * functionality.
- * </p>
+ * This is the professional Queue Interface for Advanced Object 
+ * Oriented Programming (CRPG 311) at SAIT Polytechnic.
+ * This Queue embodies all the standard Queue operations, 
+ * and includes several helper methods that will 
+ * give the data structure more flexibility and use.
  * 
- * @param <E> The type of elements this queue holds.
+ * Created On: June 4, 2004
+ * Updated On: Dec. 3, 2010
+ * Updated On: Nov 15, 2018 by kitty
+ * 
+ * Queue.java
+ * @author Don Heninger & Dave Watson
  */
-public interface QueueADT<E> {
-	
+public interface QueueADT<E> extends Serializable
+{
 	/**
-	 * The size method will return the current element count contained 
-	 * in the Queue.
+	 * Enqueue will place the added item at the last position in the
+	 * queue.  This method will not allow <code>null</code> values
+	 * to be added to the Queue.
 	 * 
-	 * Precondition: A valid Queue exists.
-	 * 
-	 * @return The current element count.
+	 * @param toAdd the item to be added to the Queue.
+	 * @throws NullPointerException raised when a <code>null</code> object
+	 * is placed in the Queue.
 	 */
-	public int size();
+	public void enqueue( E toAdd ) throws NullPointerException;
 	
 	/**
-	 * Returns <code>true</code> if this Queue contains no elements.
+	 * Dequeue will remove the first item that was placed in the Queue.
+	 * @return the first item in the Queue.
+	 * @throws EmptyQueueException raised when the queue's length is zero (0).
+	 */
+	public E dequeue() throws EmptyQueueException;
+	
+	/**
+	 * Peek provides a reference to the first item in the queue without
+	 * removing from the queue.
 	 * 
-	 * Precondition: A valid Queue exists.
-	 * 
-	 * @return <code>true</code> if this Queue contains no elements.
+	 * @return the first item in the queue.
+	 * @throws EmptyQueueException raised when the queue's length is zero (0).
+	 */
+	public E peek() throws EmptyQueueException;
+	
+	/**
+	 * dequeueAll removes all items in the queue.
+	 */
+	public void dequeueAll();
+	
+	/**
+	 * Returns <code>true</code> when the queue contains no items.
+	 * @return <code>true</code> when queue length is zero (0).
 	 */
 	public boolean isEmpty();
 	
 	/**
-	 * Removes all of the elements from this Queue. This Queue will be empty after
-	 * this call returns.
+	 * Returns an iterator over the elements in this queue in proper sequence.
 	 * 
-	 * Precondition: A valid Queue exists.
-	 * 
+	 * @return an iterator over the elements in this queue in proper sequence.
 	 */
-	public void clear();
-	
+	public Iterator<E> iterator();
 	
 	/**
-	 * Append the specified element to the end of this Queue.
-	 * Implementations that support this operation may place limitations 
-	 * on what elements may be appended to this queue. In particular, some
-	 * implementations will refuse to push <code>null</code> elements.
-	 * List classes should clearly specify in their
-	 * documentation any restrictions on what elements may be added.
+	 * Used to compare two Queue ADT's. To be equal two queues must contain
+	 * equal items appearing in the same order.
 	 * 
-	 * Precondition: A valid Queue exists.
+	 * @param that the Queue ADT to be compared to this queue.
+	 * @return <code>true</code> if the queues are equal.
+	 */
+	public boolean equals( QueueADT<E> that );
+	
+	/**
+	 * Returns an array containing all of the elements in this list in proper
+	 * sequence. Obeys the general contract of the Collection.toArray method.
 	 * 
-	 * Postcondition: An element E is appended to the queue and its depth is incremented
+	 * @return an array containing all of the elements in this list in proper
+	 *         sequence.
+	 */
+	public Object[] toArray();
+
+	/**
+	 * Returns an array containing all of the elements in this list in proper
+	 * sequence; the runtime type of the returned array is that of the specified
+	 * array. Obeys the general contract of the Collection.toArray(Object[])
+	 * method.
 	 * 
-	 * @param toEnqueue
-	 * 			Element to be appended to this queue.
-	 * @return true if element is appended successfully.
+	 * @param toHold
+	 *            the array into which the elements of this queue are to be
+	 *            stored, if it is big enough; otherwise, a new array of the
+	 *            same runtime type is allocated for this purpose.
+	 * @return an array containing the elements of this queue.
 	 * @throws NullPointerException
-	 * 			If the specified element is <code>null</code> and the queue
-	 * 			implementation does not support having <code>null</code>
-	 * 			elements.
+	 *          if the specified array is null.
 	 */
-	public boolean enqueue(E toEnqueue) throws NullPointerException;
-	
-	
+	public E[] toArray( E[] holder ) throws NullPointerException;
 	
 	/**
-	 * Removes the element at the start of this queue.
-	 * Returns the element that was removed from the queue.
-	 * 
-	 * Precondition: A valid Queue exists.
-	 * 
-	 * Postcondition: An element E is removed from the queue and its size is decremented
-	 * 
-	 * @return The removed element.
-	 * @throws IndexOutOfBoundsException
-	 * 			If the element in the queue does not exist.
+	 * (Optional Method) Returns true if the number of items in the queue
+	 * equals the length.  This operation is only implement when a fixed length
+	 * queue is required.
+	 * @return <code>true</code> if queue is at capacity.
 	 */
-	public E dequeue() throws NoSuchElementException;
-	
+	public boolean isFull();
 	
 	/**
-	 * Returns the element at the start of the queue.
-	 * 
-	 * Precondition: A valid Queue exists.
-	 * 
-	 * @return The element at the start of the queue.
-	 * @throws NoSuchElementException
-	 * 			If the element in the queue does not exist
+	 * Returns the length of the current queue as an integer value.
+	 * @return the current size to the queue as an integer.
 	 */
-	public E peek()throws NoSuchElementException;
+	public int size();
 }

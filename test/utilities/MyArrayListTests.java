@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * @author joekim
  *
  */
-class MyArrayListTest {
+class MyArrayListTests {
 	
 	ListADT <String> list1;
 
