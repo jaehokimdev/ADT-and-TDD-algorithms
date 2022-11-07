@@ -8,8 +8,8 @@ public class MyDLL<E> implements ListADT<E> {
 	private int size;
 	
 	public MyDLL() {
-		head = null;
-		tail = null;
+		this.head = null;
+		this.tail = null;
 		size = 0;
 	}
 	
@@ -22,15 +22,31 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public void clear() {
-		head = null;
-		tail = null;
+		this.head = null;
+		this.tail = null;
 		size = 0;
 	}
 
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return false;
+		MyDLLNode<E> newNode = new MyDLLNode<E>(toAdd);
+		
+		if (index == 0 && size == 0) {
+			head = newNode;
+			tail = newNode;
+		} else if(index == 0 && size != 0) {
+			newNode.setNext(head);
+			head.setPrev(newNode);
+			head = newNode;
+		} else if(index == size -1) {
+			tail.setNext(newNode);
+			newNode.setPrev(tail);
+			tail = newNode;
+		} else {
+			MyDLLNode<E> curr
+		}
+		
+		return true;
 	}
 
 	@Override
