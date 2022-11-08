@@ -43,34 +43,89 @@ public class MyDLL<E> implements ListADT<E> {
 			newNode.setPrev(tail);
 			tail = newNode;
 		} else {
-			MyDLLNode<E> curr
+			MyDLLNode<E> current = head;
+			MyDLLNode<E> prev = null;
+			
+			for(int i = 0; i < index; i++) {
+				prev = current;
+				current = current.getNext();
+			}
+			
+			prev.setNext(newNode);
+			newNode.setPrev(prev);
+			newNode.setNext(current);
+			current.setPrev(newNode);
+		}
+		
+		size++;
+		return true;
+	}
+
+	@Override
+	public boolean add(E toAdd) throws NullPointerException {
+		MyDLLNode<E> newNode = new MyDLLNode<E>(toAdd);
+
+		if (head == null) {
+			head = newNode;
+			tail = newNode;
+		} else {
+			tail.setNext(newNode);
+			newNode.setPrev(tail);
+			tail = newNode;
+		}
+		
+		size++;
+		return true;
+	}
+
+	@Override
+	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
+		for( int i = 0; i < toAdd.size(); i++) {
+			add(toAdd.get(i));
 		}
 		
 		return true;
 	}
 
 	@Override
-	public boolean add(E toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		MyDLLNode<E> current = head;
+		
+		for(int i = 0; i < index; i++) {
+			current = current.getNext();
+		}
+		
+		
+		return current.getElement();
 	}
 
 	@Override
 	public E remove(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		E removed = null;
+		
+		if (head == null) {
+			throw new IndexOutOfBoundsException();
+		} else if (size == 1) {
+			removed = (E) head;
+			head = null;
+			tail = null;
+		} else if (index == size - 1) {
+			removed = (E) tail;
+			tail.getPrev().setNext(null);
+			tail = tail.getPrev();
+		} else {
+			MyDLLNode<E> current = head;
+			
+			for (int i = 0; i < index; i++) {
+				current = current.getNext();
+			}
+			
+			removed = current.getElement();
+			
+			
+		}
+		
+		return removed;
 	}
 
 	@Override
