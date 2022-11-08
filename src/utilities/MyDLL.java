@@ -121,17 +121,43 @@ public class MyDLL<E> implements ListADT<E> {
 			}
 			
 			removed = current.getElement();
-			
+			current.getPrev().setNext(current.getNext());
+			current.getNext().setPrev(current.getPrev());
 			
 		}
 		
+		size--;
 		return removed;
 	}
 
 	@Override
 	public E remove(E toRemove) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return null;
+		E removed = null;
+		MyDLLNode<E> current = head;
+		
+		for (int i = 0; i < size; i++) {
+			current = current.getNext();
+			
+			if (current.getElement().equals(toRemove)) {
+				if (i == 1) {
+					removed = current.getElement();
+					head = null;
+					tail = null;
+					size = 0;
+				} else if (i == size - 1) {
+					removed = current.getElement();
+					tail.getPrev().setNext(null);
+					tail = tail.getPrev();
+					size--;
+				} else {
+					removed = current.getElement();
+					current.getPrev().setNext(current.getNext());
+					current.getNext().setPrev(current.getPrev());
+					size--;
+				}
+			}
+		}
+		return removed;
 	}
 
 	@Override
@@ -142,7 +168,9 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if (head == null) {
+			return true;
+		}
 		return false;
 	}
 
