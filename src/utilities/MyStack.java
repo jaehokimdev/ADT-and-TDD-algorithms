@@ -6,76 +6,117 @@ public class MyStack<E> implements StackADT<E> {
 
 	private static final long serialVersionUID = -5020374182030896278L;
 
+	private MyArrayList<E> stack;
+	private int top;
+	
+	public MyStack() {
+		top = -1;
+	}
+	
+	public MyStack(int length) {
+		super();
+		stack = new MyArrayList<>(length);
+	}
+	
 	@Override
 	public void push(E toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
 		
+		if (toAdd == null) {
+			throw new NullPointerException();
+		}
+		
+		top++;
+		stack.add(toAdd);
 	}
 
 	@Override
 	public E pop() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		top--;
+		return stack.remove(stack.size() - 1);
 	}
 
 	@Override
 	public E peek() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return stack.get(stack.size() - 1);
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		
+		stack.clear();
 		
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+
+		return stack.isEmpty();
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return stack.toArray();
 	}
 
 	@Override
 	public E[] toArray(E[] holder) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (holder == null) {
+			throw new NullPointerException();
+		}
+
+		return stack.toArray(holder);
 	}
 
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
+		
+		if (toFind == null) {
+			throw new NullPointerException();
+		}
+
+		return stack.contains(toFind);
 	}
 
 	@Override
 	public int search(E toFind) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		for (int i = 0; i < stack.size(); i++) {
+			if (stack.get(i).equals(toFind)) {
+				return (top - i);
+			}
+		}
+		
+		return -1;
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return stack.iterator();
 	}
 
 	@Override
 	public boolean equals(StackADT<E> that) {
-		// TODO Auto-generated method stub
-		return false;
+
+		Object[] array = that.toArray();
+		
+		for (int i = 0; i < stack.size(); i++) {
+			if (!stack.get(i).equals(array[i])) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return stack.size();
 	}
 
 }

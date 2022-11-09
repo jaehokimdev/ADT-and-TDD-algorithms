@@ -218,7 +218,7 @@ public class MyArrayList<E> implements ListADT<E>{
 	
 	private class ArrayBasedIterator implements Iterator<E>
 	{
-		private int pos;
+		private int pos = 0;
 		
 		@Override
 		public boolean hasNext() {
@@ -231,8 +231,8 @@ public class MyArrayList<E> implements ListADT<E>{
 			{
 				throw new NoSuchElementException();
 			}
-			E toReturn = array[pos];
 			pos++;
+			E toReturn = array[pos];
 			return toReturn;
 		}
 		

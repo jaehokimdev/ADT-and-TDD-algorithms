@@ -14,19 +14,31 @@ import org.junit.jupiter.api.Test;
  *
  */
 class MyStackTests {
+	
+	private MyStack<String> list;
+	
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
-	}
+		list = new MyStack<String>(10);
+		
+		this.list.push("A");
+		this.list.push("B");
+		this.list.push("C");
+		this.list.push("D");
+		this.list.push("E");
 
+	}
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@AfterEach
 	void tearDown() throws Exception {
+		list.clear();
 	}
 
 	/**
@@ -34,7 +46,9 @@ class MyStackTests {
 	 */
 	@Test
 	void testPush() {
-		fail("Not yet implemented");
+		list.push("F");
+		assertEquals("F", list.peek());
+		assertEquals(6, this.list.size());
 	}
 
 	/**
@@ -42,7 +56,16 @@ class MyStackTests {
 	 */
 	@Test
 	void testPop() {
-		fail("Not yet implemented");
+		list.pop();
+		
+		assertEquals("D", list.peek());
+		assertEquals(4, list.size());
+		
+		list.pop();
+		list.pop();
+		
+		assertEquals("B", list.peek());
+		assertEquals(2, list.size());
 	}
 
 	/**
@@ -50,7 +73,7 @@ class MyStackTests {
 	 */
 	@Test
 	void testPeek() {
-		fail("Not yet implemented");
+		assertEquals("E", list.peek());
 	}
 
 	/**
@@ -58,7 +81,8 @@ class MyStackTests {
 	 */
 	@Test
 	void testClear() {
-		fail("Not yet implemented");
+		list.clear();
+		assertTrue(list.isEmpty());
 	}
 
 	/**
@@ -66,7 +90,9 @@ class MyStackTests {
 	 */
 	@Test
 	void testIsEmpty() {
-		fail("Not yet implemented");
+		assertFalse(list.isEmpty());
+		list.clear();
+		assertTrue(list.isEmpty());
 	}
 
 	/**
@@ -74,7 +100,13 @@ class MyStackTests {
 	 */
 	@Test
 	void testToArray() {
-		fail("Not yet implemented");
+		Object[] array = list.toArray();
+		
+		assertEquals("A", array[0]);
+		assertEquals("B", array[1]);
+		assertEquals("C", array[2]);
+		assertEquals("D", array[3]);
+		assertEquals("E", array[4]);
 	}
 
 	/**
@@ -82,7 +114,15 @@ class MyStackTests {
 	 */
 	@Test
 	void testToArrayEArray() {
-		fail("Not yet implemented");
+		String[] array = new String[5];
+		
+		list.toArray(array);
+		
+		assertEquals("A", array[0]);
+		assertEquals("B", array[1]);
+		assertEquals("C", array[2]);
+		assertEquals("D", array[3]);
+		assertEquals("E", array[4]);
 	}
 
 	/**
@@ -90,7 +130,13 @@ class MyStackTests {
 	 */
 	@Test
 	void testContains() {
-		fail("Not yet implemented");
+		assertTrue(list.contains("A"));
+		assertTrue(list.contains("B"));
+		assertTrue(list.contains("C"));
+		assertTrue(list.contains("D"));
+		assertTrue(list.contains("E"));
+		
+		assertFalse(list.contains("F"));
 	}
 
 	/**
@@ -98,7 +144,11 @@ class MyStackTests {
 	 */
 	@Test
 	void testSearch() {
-		fail("Not yet implemented");
+		assertEquals(1, list.search("E"));
+		assertEquals(2, list.search("D"));
+		assertEquals(3, list.search("C"));
+		assertEquals(4, list.search("B"));
+		assertEquals(5, list.search("A"));
 	}
 
 	/**
@@ -106,7 +156,12 @@ class MyStackTests {
 	 */
 	@Test
 	void testIterator() {
-		fail("Not yet implemented");
+		Iterator<String> it = list.iterator();
+		
+		assertEquals("B", it.next());
+		assertEquals("C", it.next());
+		assertEquals("D", it.next());
+		assertTrue(it.hasNext());
 	}
 
 	/**
@@ -114,7 +169,26 @@ class MyStackTests {
 	 */
 	@Test
 	void testEqualsStackADTOfE() {
-		fail("Not yet implemented");
+		MyStack<String> that = new MyStack<String>(10);
+		
+		that.push("A");
+		that.push("B");
+		that.push("C");
+		that.push("D");
+		that.push("E");
+
+		assertTrue(list.equals(that));
+		
+		MyStack<String> that2 = new MyStack<String>(10);
+		
+		that2.push("A");
+		that2.push("A");
+		that2.push("C");
+		that2.push("D");
+		that2.push("E");
+		
+		assertFalse(list.equals(that2));
+
 	}
 
 	/**
@@ -122,7 +196,7 @@ class MyStackTests {
 	 */
 	@Test
 	void testSize() {
-		fail("Not yet implemented");
+		assertEquals(5, list.size());
 	}
 
 }

@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.NoSuchElementException;
+
 public class MyDLL<E> implements ListADT<E> {
 
 	private static final long serialVersionUID = -7140796753013938413L;
@@ -30,6 +32,14 @@ public class MyDLL<E> implements ListADT<E> {
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
 		MyDLLNode<E> newNode = new MyDLLNode<E>(toAdd);
+		
+		if (toAdd == null) {
+			throw new NullPointerException();
+		}
+		
+		if (index > size - 1) {
+			throw new IndexOutOfBoundsException();
+		}
 		
 		if (index == 0 && size == 0) {
 			head = newNode;
@@ -63,6 +73,10 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean add(E toAdd) throws NullPointerException {
+		if (toAdd == null) {
+			throw new NullPointerException();
+		}
+		
 		MyDLLNode<E> newNode = new MyDLLNode<E>(toAdd);
 
 		if (head == null) {
@@ -80,6 +94,10 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
+		if (toAdd == null) {
+			throw new NullPointerException();
+		}
+		
 		for( int i = 0; i < toAdd.size(); i++) {
 			add(toAdd.get(i));
 		}
@@ -89,6 +107,10 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
+		if (index > size - 1) {
+			throw new IndexOutOfBoundsException();
+		}
+		
 		MyDLLNode<E> current = head;
 		
 		for(int i = 0; i < index; i++) {
@@ -101,11 +123,12 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public E remove(int index) throws IndexOutOfBoundsException {
+		if (index > size - 1) {
+			throw new IndexOutOfBoundsException();
+		}
 		E removed = null;
 		
-		if (head == null) {
-			throw new IndexOutOfBoundsException();
-		} else if (size == 1) {
+		if (size == 1) {
 			removed = (E) head;
 			head = null;
 			tail = null;
@@ -132,10 +155,14 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public E remove(E toRemove) throws NullPointerException {
+		if (toRemove == null) {
+			throw new NullPointerException();
+		}
+
 		E removed = null;
 		MyDLLNode<E> current = head;
 		
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < size - 1; i++) {
 			current = current.getNext();
 			
 			if (current.getElement().equals(toRemove)) {
@@ -162,8 +189,44 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		if (toChange == null) {
+			throw new NullPointerException();
+		}
+		
+		if (index > size - 1) {
+			throw new IndexOutOfBoundsException();
+		}
+		
+		MyDLLNode<E> newNode = new MyDLLNode<E>(toChange);
+		MyDLLNode<E> oldNode = null;
+		
+		if (index == 0) {
+			oldNode = head;
+			
+			newNode.setNext(head.getNext());
+			head.getNext().setPrev(newNode);
+			head = newNode;
+		} else if (index == size - 1) {
+			oldNode = tail;
+			
+			tail.getPrev().setNext(newNode);
+			newNode.setPrev(tail.getPrev());
+			tail = newNode;
+		} else {			
+			MyDLLNode<E> current = head;
+
+			for (int i = 0; i < index; i++) {
+				current = current.getNext();
+			}
+			
+			oldNode = current;
+			current.getPrev().setNext(newNode);
+			newNode.setPrev(current.getPrev());
+			current.getNext().setPrev(newNode);
+			newNode.setNext(current.getNext());
+		}
+		
+		return (E) oldNode;
 	}
 
 	@Override
@@ -176,26 +239,80 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
-		// TODO Auto-generated method stub
+		if (toFind == null) {
+			throw new NullPointerException();
+		}
+		
+		MyDLLNode<E> find = new MyDLLNode<E>(toFind);
+		MyDLLNode<E> current = head;
+		
+		for (int i = 0; i < size - 1; i++) {
+			current = current.getNext();
+			
+			if (current.equals(find)) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return null;
+		if (toHold == null) {
+			throw new NullPointerException();
+		}
+		
+		MyDLLNode<E> current = head;
+		
+		for (int i = 0; i < size; i++) {
+			
+			toHold[i] = current.getElement();
+			current = current.getNext();
+		}
+		
+		return toHold;
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Object[] newArray = new Object[size];
+		MyDLLNode<E> current = head;
+
+		for (int i = 0; i < size; i++) {
+			newArray[i] = current.getElement();
+			current = current.getNext();
+		}
+		
+		return newArray;
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Iterator<E> it = new Iterator<E>() {
+			
+			private MyDLLNode<E> current = head;
+
+			@Override
+			public boolean hasNext() {
+				if (current.getNext() != null) {
+					return true;
+				}
+				
+				return false;
+			}
+
+			@Override
+			public E next() throws NoSuchElementException {
+				current = current.getNext();
+				
+				return current.getElement();
+			}
+	
+		};
+		
+		return it;
 	}
 
 }

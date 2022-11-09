@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  */
 class MyDLLTests {
 	
-	private MyDLL<Integer> list;
+	private MyDLL<String> list;
 
 	/**
 	 * @throws java.lang.Exception
@@ -24,11 +24,11 @@ class MyDLLTests {
 	void setUp() throws Exception {
 		this.list = new MyDLL<>();
 		
-		this.list.add(1);
-		this.list.add(2);
-		this.list.add(3);
-		this.list.add(4);
-		this.list.add(5);
+		this.list.add("A");
+		this.list.add("B");
+		this.list.add("C");
+		this.list.add("D");
+		this.list.add("E");
 	}
 
 	/**
@@ -64,8 +64,8 @@ class MyDLLTests {
 	@Test
 	public void testAdd()	{
 
-		list.add(6);
-		assertEquals(6, list.get(5));
+		list.add("F");
+		assertEquals("F", list.get(5));
 		assertEquals(6, this.list.size());
 	}
 	
@@ -74,14 +74,14 @@ class MyDLLTests {
 	 */
 	@Test
 	public void testAddWithIndex()	{
-		list.add(0, 6);
+		list.add(0, "F");
 		
-		assertEquals(6, list.get(0));
-		assertEquals(1, list.get(1));
-		assertEquals(2, list.get(2));
-		assertEquals(3, list.get(3));
-		assertEquals(4, list.get(4));
-		assertEquals(5, list.get(5));
+		assertEquals("F", list.get(0));
+		assertEquals("A", list.get(1));
+		assertEquals("B", list.get(2));
+		assertEquals("C", list.get(3));
+		assertEquals("D", list.get(4));
+		assertEquals("E", list.get(5));
 		assertEquals(6, this.list.size());
 	}
 
@@ -91,26 +91,26 @@ class MyDLLTests {
 	@Test
 	public void testAddAll()	{
 		
-		MyDLL<Integer> toBeAdded = new MyDLL<>();
+		MyDLL<String> toBeAdded = new MyDLL<>();
 		
-		toBeAdded.add(6);
-		toBeAdded.add(7);
-		toBeAdded.add(8);
-		toBeAdded.add(9);
+		toBeAdded.add("F");
+		toBeAdded.add("G");
+		toBeAdded.add("H");
+		toBeAdded.add("I");
 		
 		assertEquals(5, list.size());
 		list.addAll(toBeAdded);
 		assertEquals(4, toBeAdded.size());
 		
-		assertEquals(1, list.get(0));
-		assertEquals(2, list.get(1));
-		assertEquals(3, list.get(2));
-		assertEquals(4, list.get(3));
-		assertEquals(5, list.get(4));
-		assertEquals(6, list.get(5));
-		assertEquals(7, list.get(6));
-		assertEquals(8, list.get(7));
-		assertEquals(9, list.get(8));
+		assertEquals("A", list.get(0));
+		assertEquals("B", list.get(1));
+		assertEquals("C", list.get(2));
+		assertEquals("D", list.get(3));
+		assertEquals("E", list.get(4));
+		assertEquals("F", list.get(5));
+		assertEquals("G", list.get(6));
+		assertEquals("H", list.get(7));
+		assertEquals("I", list.get(8));
 		assertEquals(9, list.size());
 		
 	}
@@ -121,11 +121,11 @@ class MyDLLTests {
 	@Test
 	public void testGet()	{
 		
-		assertEquals(1, list.get(0));
-		assertEquals(2, list.get(1));
-		assertEquals(3, list.get(2));
-		assertEquals(4, list.get(3));
-		assertEquals(5, list.get(4));
+		assertEquals("A", list.get(0));
+		assertEquals("B", list.get(1));
+		assertEquals("C", list.get(2));
+		assertEquals("D", list.get(3));
+		assertEquals("E", list.get(4));
 	}
 	
 	/**
@@ -136,10 +136,10 @@ class MyDLLTests {
 		
 		list.remove(3);
 		
-		assertEquals(1, list.get(0));
-		assertEquals(2, list.get(1));
-		assertEquals(4, list.get(2));
-		assertEquals(5, list.get(3));
+		assertEquals("A", list.get(0));
+		assertEquals("B", list.get(1));
+		assertEquals("C", list.get(2));
+		assertEquals("E", list.get(3));
 		assertEquals(4, list.size());
 	}
 	
@@ -149,12 +149,12 @@ class MyDLLTests {
 	@Test
 	public void testRemoveElement()	{
 		
-		list.remove((Integer)2);
+		list.remove("B");
 		
-		assertEquals(1, list.get(0));
-		assertEquals(3, list.get(1));
-		assertEquals(4, list.get(2));
-		assertEquals(5, list.get(3));
+		assertEquals("A", list.get(0));
+		assertEquals("C", list.get(1));
+		assertEquals("D", list.get(2));
+		assertEquals("E", list.get(3));
 		
 		assertEquals(4, list.size());
 	}
@@ -165,13 +165,13 @@ class MyDLLTests {
 	@Test
 	public void testSet()	{
 		
-		list.set(2, 6);
+		list.set(2, "F");
 		
-		assertEquals(1, list.get(0));
-		assertEquals(2, list.get(1));
-		assertEquals(6, list.get(2));
-		assertEquals(4, list.get(3));
-		assertEquals(5, list.get(4));
+		assertEquals("A", list.get(0));
+		assertEquals("B", list.get(1));
+		assertEquals("F", list.get(2));
+		assertEquals("D", list.get(3));
+		assertEquals("E", list.get(4));
 		
 		assertEquals(5, list.size());
 	}
@@ -189,19 +189,30 @@ class MyDLLTests {
 	}
 	
 	/**
+	 * Test method for {@link utility.MyDLL#Contains(int)}
+	 */
+	@Test
+	public void testContains()	{
+		
+		assertFalse(list.contains("I"));
+		assertTrue(list.contains("C"));
+		
+	}
+	
+	/**
 	 * Test method for {@link utility.MyDLL#toArray(Object[])}
 	 */
 	@Test
 	public void testToArrayWithParam()	{
 		
-		Integer[] listToHold = new Integer[5];
+		String[] listToHold = new String[5];
 		list.toArray(listToHold);
 		
-		assertEquals(1, listToHold[0]);
-		assertEquals(2, listToHold[1]);
-		assertEquals(3, listToHold[2]);
-		assertEquals(4, listToHold[3]);
-		assertEquals(5, listToHold[4]);
+		assertEquals("A", listToHold[0]);
+		assertEquals("B", listToHold[1]);
+		assertEquals("C", listToHold[2]);
+		assertEquals("D", listToHold[3]);
+		assertEquals("E", listToHold[4]);
 	}
 	
 	/**
@@ -212,11 +223,11 @@ class MyDLLTests {
 		
 		Object[] copiedArray = list.toArray();
 		
-		assertEquals(1, copiedArray[0]);
-		assertEquals(2, copiedArray[1]);
-		assertEquals(3, copiedArray[2]);
-		assertEquals(4, copiedArray[3]);
-		assertEquals(5, copiedArray[4]);
+		assertEquals("A", copiedArray[0]);
+		assertEquals("B", copiedArray[1]);
+		assertEquals("C", copiedArray[2]);
+		assertEquals("D", copiedArray[3]);
+		assertEquals("E", copiedArray[4]);
 		assertEquals(5, copiedArray.length);
 	}
 	
@@ -226,14 +237,14 @@ class MyDLLTests {
 	@Test
 	public void testIterator()	{
 		
-		Iterator<Integer> it = list.iterator();
+		Iterator<String> it = list.iterator();
 		
 		
-		assertEquals(2, it.next());
-		assertEquals(3, it.next());
-		assertEquals(4, it.next());
+		assertEquals("B", it.next());
+		assertEquals("C", it.next());
+		assertEquals("D", it.next());
 		assertEquals(true, it.hasNext());
-		assertEquals(5, it.next());
+		assertEquals("E", it.next());
 		assertEquals(false, it.hasNext());
 	}
 	
