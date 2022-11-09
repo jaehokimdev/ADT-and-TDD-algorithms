@@ -33,14 +33,6 @@ public class MyDLL<E> implements ListADT<E> {
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
 		MyDLLNode<E> newNode = new MyDLLNode<E>(toAdd);
 		
-		if (toAdd == null) {
-			throw new NullPointerException();
-		}
-		
-		if (index > size - 1) {
-			throw new IndexOutOfBoundsException();
-		}
-		
 		if (index == 0 && size == 0) {
 			head = newNode;
 			tail = newNode;
@@ -107,9 +99,6 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
-		if (index > size - 1) {
-			throw new IndexOutOfBoundsException();
-		}
 		
 		MyDLLNode<E> current = head;
 		
@@ -123,9 +112,7 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public E remove(int index) throws IndexOutOfBoundsException {
-		if (index > size - 1) {
-			throw new IndexOutOfBoundsException();
-		}
+
 		E removed = null;
 		
 		if (size == 1) {

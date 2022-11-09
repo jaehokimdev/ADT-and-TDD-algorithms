@@ -54,7 +54,7 @@ class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(string, java.lang.Object)}.
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
 	void testAddIntEEmptyList() {
@@ -65,7 +65,7 @@ class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(string, java.lang.Object)}.
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
 	void testAddIntENonEmptyListStart() {
@@ -77,7 +77,7 @@ class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(string, java.lang.Object)}.
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
 	void testAddIntENonEmptyListMiddle() {
@@ -90,7 +90,7 @@ class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(string, java.lang.Object)}.
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
 	void testAddIntENonEmptyListEnd() {
@@ -103,7 +103,7 @@ class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(string, java.lang.Object)}.
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
 	void testAddIntENullPointer() {
@@ -116,7 +116,7 @@ class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(string, java.lang.Object)}.
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
 	void testAddIntEIndexOutOfBoundsNegative() {
@@ -129,7 +129,7 @@ class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(string, java.lang.Object)}.
+	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
 	void testAddIntEIndexOutOfBoundsGreaterThanSize() {
@@ -174,7 +174,7 @@ class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#get(string)}.
+	 * Test method for {@link utilities.MyArrayList#get(int)}.
 	 */
 	@Test
 	void testGet() {
@@ -186,7 +186,7 @@ class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#remove(string)}.
+	 * Test method for {@link utilities.MyArrayList#remove(int)}.
 	 */
 	@Test
 	void testRemoveInt() {
@@ -214,7 +214,7 @@ class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#set(string, java.lang.Object)}.
+	 * Test method for {@link utilities.MyArrayList#set(int, java.lang.Object)}.
 	 */
 	@Test
 	void testSet() {
