@@ -195,8 +195,11 @@ class MyDLLTests {
 	public void testContains()	{
 		
 		assertFalse(list.contains("I"));
+		assertTrue(list.contains("A"));
+		assertTrue(list.contains("B"));
 		assertTrue(list.contains("C"));
-		
+		assertTrue(list.contains("D"));
+		assertTrue(list.contains("E"));
 	}
 	
 	/**

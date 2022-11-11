@@ -226,19 +226,21 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
+		
 		if (toFind == null) {
 			throw new NullPointerException();
 		}
 		
-		MyDLLNode<E> find = new MyDLLNode<E>(toFind);
-		MyDLLNode<E> current = head;
+		MyDLLNode<E> current = head;		
 		
-		for (int i = 0; i < size - 1; i++) {
-			current = current.getNext();
-			
-			if (current.equals(find)) {
+		while(current!=null){
+			if (current.getElement().equals(toFind)) {
+				System.out.println("End");
 				return true;
 			}
+			
+			current = current.getNext();
+			
 		}
 		
 		return false;
