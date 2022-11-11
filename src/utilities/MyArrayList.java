@@ -231,7 +231,8 @@ public class MyArrayList<E> implements ListADT<E>{
 			{
 				throw new NoSuchElementException();
 			}
-			pos++;
+			
+			
 			E toReturn = array[pos];
 			return toReturn;
 		}

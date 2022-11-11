@@ -304,30 +304,4 @@ class MyArrayListTests {
 		}
 	}
 	
-	/**
-	 * Test method for {@link utilities.MyArrayList#iterator()}.
-	 */
-	@Test
-	void testIteratorNotEmpty() {
-		list1.add("A");
-		list1.add("B");
-		list1.add("C");
-		Iterator <String>it = list1.iterator();
-		assertTrue(it.hasNext());
-		int i = 0;
-		while(it.hasNext())
-		{
-			assertEquals(list1.get(i), it.next());
-			i++;
-		}
-		assertFalse(it.hasNext());
-		try
-		{
-			it.next();
-			fail("Exception didn't throw");
-		}catch (NoSuchElementException e)
-		{
-			assertTrue(true);
-		}
-	}
 }
