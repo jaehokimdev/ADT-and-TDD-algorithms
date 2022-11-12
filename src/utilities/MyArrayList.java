@@ -2,6 +2,11 @@ package utilities;
 
 import java.util.NoSuchElementException;
 
+/**
+ * @author Jaeho Kim, Valentin Morales, Ho Chun Sun, Miller Gee 
+ * @version 1.1 
+ */
+
 public class MyArrayList<E> implements ListADT<E>{ 
 
 	private static final long serialVersionUID = -6641976547739553233L;
@@ -18,7 +23,7 @@ public class MyArrayList<E> implements ListADT<E>{
 	public MyArrayList(int capacity) {
 		array = (E[]) new Object[capacity];
 	}
-	
+
 	@Override
 	public int size() {
 		return size;
@@ -56,10 +61,7 @@ public class MyArrayList<E> implements ListADT<E>{
 		
 		array[index] = toAdd;
 		size++;
-		//if array.length == size (array has run out of room)
-			//create a new array of larger length
-			//copy from original array into the new array
-			//set array to the new larger array
+		
 		return true;
 	}
 

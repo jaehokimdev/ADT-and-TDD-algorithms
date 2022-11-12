@@ -2,6 +2,11 @@ package utilities;
 
 import exceptions.EmptyQueueException;
 
+/**
+ * @author Jaeho Kim, Valentin Morales, Ho Chun Sun, Miller Gee 
+ * @version 1.1 
+ */
+
 public class MyQueue<E> implements QueueADT<E>{
 
 	private static final long serialVersionUID = 9044049313499921350L;

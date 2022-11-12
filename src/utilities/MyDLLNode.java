@@ -1,5 +1,10 @@
 package utilities;
 
+/**
+ * @author Jaeho Kim, Valentin Morales, Ho Chun Sun, Miller Gee 
+ * @version 1.1 
+ */
+
 public class MyDLLNode<E> {
 	private E element;
 	private MyDLLNode<E> next;

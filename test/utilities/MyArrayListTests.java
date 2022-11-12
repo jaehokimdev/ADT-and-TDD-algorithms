@@ -12,8 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author joekim
- *
+ * @author Jaeho Kim, Valentin Morales, Ho Chun Sun, Miller Gee 
+ * @version 1.1 
  */
 class MyArrayListTests {
 	

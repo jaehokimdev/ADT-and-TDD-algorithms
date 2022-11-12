@@ -2,6 +2,11 @@ package utilities;
 
 import java.util.EmptyStackException;
 
+/**
+ * @author Jaeho Kim, Valentin Morales, Ho Chun Sun, Miller Gee 
+ * @version 1.1 
+ */
+
 public class MyStack<E> implements StackADT<E> {
 
 	private static final long serialVersionUID = -5020374182030896278L;

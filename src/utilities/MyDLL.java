@@ -2,6 +2,11 @@ package utilities;
 
 import java.util.NoSuchElementException;
 
+/**
+ * @author Jaeho Kim, Valentin Morales, Ho Chun Sun, Miller Gee 
+ * @version 1.1 
+ */
+
 public class MyDLL<E> implements ListADT<E> {
 
 	private static final long serialVersionUID = -7140796753013938413L;
