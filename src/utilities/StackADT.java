@@ -4,17 +4,7 @@ import java.util.*;
 import java.io.*;
 
 /**
- * This is the professional Stack Interface for Advanced Object 
- * Oriented Programming (CRPG 311) at the SAIT Polytechnic.
- * This Stack embodies all the standard Stack operations, 
- * and includes several helper methods that will 
- * give the data structure more flexibility and use.
- * 
- * Created On: June 4, 2004
- * Updated On: Aug. 18, 2009
- * Updated On: Nov 15, 2018 by kitty
- * 
- * @author Don Heninger and Dave Watson
+ * @author Jaeho Kim
  * @version 1.1
  */
 public interface StackADT<E> extends Serializable

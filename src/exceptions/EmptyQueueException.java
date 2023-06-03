@@ -1,7 +1,7 @@
 package exceptions;
 
 /**
- * @author Jaeho Kim, Valentin Morales, Ho Chun Sun, Miller Gee 
+ * @author Jaeho Kim
  * @version 1.1 
  */
 
