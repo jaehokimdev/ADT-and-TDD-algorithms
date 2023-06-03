@@ -1,4 +1,5 @@
 This program includes my personal implementation of the following classes
+
 	1.- MyQueue.java
 	2.- MyStack.java
 	3.- MyArrayList.java
@@ -10,6 +11,7 @@ the iterator interface is used to override the respective methods in the MyStack
 
 	
 The proper JUnit testing for all four classes is performed in the following files
+
 	1.- MyArrayListTests.java
 	2.- MyDLLTests.java
 	3.- MyQueueTests.java
